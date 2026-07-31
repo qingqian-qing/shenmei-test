@@ -6,21 +6,9 @@
 <title>ロリコン</title>
 <style>
   @font-face{font-family:'SRT';src:url('font.ttf') format('truetype');font-weight:400;font-display:swap}
-
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   html{height:100%}
-
-  body{
-    font-family:'SRT',-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC",sans-serif;
-    min-height:100dvh;min-height:-webkit-fill-available;
-    background:linear-gradient(160deg,#fce4ec 0%,#f8d8e8 25%,#fce4f0 50%,#f3d8e8 75%,#fde8f0 100%);
-    background-attachment:fixed;
-    color:rgba(80,30,50,.8);
-    display:flex;align-items:center;justify-content:center;
-    padding:max(20px,env(safe-area-inset-top)) 16px max(20px,env(safe-area-inset-bottom));
-    overflow-x:hidden;
-    -webkit-tap-highlight-color:transparent;user-select:none;
-  }
+  body{font-family:'SRT',-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC",sans-serif;min-height:100dvh;min-height:-webkit-fill-available;background:linear-gradient(160deg,#fce4ec 0%,#f8d8e8 25%,#fce4f0 50%,#f3d8e8 75%,#fde8f0 100%);background-attachment:fixed;color:rgba(80,30,50,.8);display:flex;align-items:center;justify-content:center;padding:max(20px,env(safe-area-inset-top)) 16px max(20px,env(safe-area-inset-bottom));overflow-x:hidden;-webkit-tap-highlight-color:transparent;user-select:none}
   .bg{position:fixed;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0}
   .bg-1{width:300px;height:300px;background:rgba(255,150,180,.3);top:-80px;right:-60px}
   .bg-2{width:250px;height:250px;background:rgba(255,180,200,.25);bottom:8%;left:-90px}
@@ -88,10 +76,10 @@ function result(pct){
 var answers=[];for(var i=0;i<30;i++)answers.push(-1);
 var cur=0,advTimer;
 function icon(name){var d=document.createElement('span');d.className='icon-wrap';d.innerHTML=I[name];return d;}
-function h(tag,attrs,kids){
+function h(tag,attrs){
   var e=document.createElement(tag);
   if(attrs)for(var k in attrs){var v=attrs[k];if(k==='c')e.className=v;else if(k==='t')e.textContent=v;else if(k[0]==='o')e.addEventListener(k.slice(1),v);else e.setAttribute(k,v);}
-  if(kids)for(var i=0;i<kids.length;i++){var c=kids[i];e.append(typeof c==='string'?document.createTextNode(c):c);}
+  for(var i=2;i<arguments.length;i++){var c=arguments[i];if(Array.isArray(c)){for(var j=0;j<c.length;j++)e.append(typeof c[j]==='string'?document.createTextNode(c[j]):c[j]);}else{e.append(typeof c==='string'?document.createTextNode(c):c);}}
   return e;
 }
 function cover(){

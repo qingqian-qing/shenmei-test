@@ -86,7 +86,7 @@ function result(pct){
   return{icon:'xeyes',title:"你来做这个测试干嘛？",text:"你全程大概在想「这些选项有什么区别」。\n别人看的是萌点，你看的是——\n什么都没看，你直接划过去了。\n你甚至可能觉得上面那些鉴定结果\n都写的是中文但你看不懂。\n没关系，这是好事。\n你的审美雷达和你本人一样纯粹——\n纯粹不在这个频道上。\n发群里能拿最高赞，\n因为所有人都觉得你的结果最好笑。"};
 }
 var answers=[];for(var i=0;i<30;i++)answers.push(-1);
-var cur=0,advTimer=;
+var cur=0,advTimer;
 function icon(name){var d=document.createElement('span');d.className='icon-wrap';d.innerHTML=I[name];return d;}
 function h(tag,attrs,kids){
   var e=document.createElement(tag);
@@ -100,7 +100,7 @@ function cover(){
   app.appendChild(h('div',{c:'card cover'},[icon('palette'),h('h1',{t:'测试你是不是萝莉控'}),h('div',{c:'sub',t:'ロリコン'}),h('div',{c:'sep'}),h('div',{c:'desc',t:'30 道题 · 探索你的隐藏属性'}),h('button',{c:'btn',oclick:function(){answers=[];for(var i=0;i<30;i++)answers.push(-1);cur=0;quiz();}},'开始大调查'),h('div',{c:'note',t:'仅供娱乐'}),h('div',{c:'disclaimer',t:'本测试由AI生成，仅供玩笑，不要当真'})]));
 }
 function quiz(){
-  if(advTimer){clearTimeout(advTimer);advTimer=;}
+  if(advTimer){clearTimeout(advTimer);advTimer;}
   document.body.style.alignItems='flex-start';
   var app=document.getElementById('app');app.innerHTML='';app.className='page';
   var q=Q[cur],dots=[];
@@ -118,7 +118,7 @@ function quiz(){
   app.appendChild(top);app.appendChild(card);
 }
 function showResult(){
-  if(advTimer){clearTimeout(advTimer);advTimer=;}
+  if(advTimer){clearTimeout(advTimer);advTimer;}
   document.body.style.alignItems='center';
   var a=0;for(var i=0;i<answers.length;i++){if(answers[i]===0)a++;}
   var pct=Math.round(a/30*100),r=result(pct);

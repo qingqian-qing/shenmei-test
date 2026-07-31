@@ -88,7 +88,7 @@ function cover(){
   app.appendChild(h('div',{c:'card cover'},[icon('palette'),h('h1',{t:'测试你是不是萝莉控'}),h('div',{c:'sub',t:'ロリコン'}),h('div',{c:'sep'}),h('div',{c:'desc',t:'30 道题 · 探索你的隐藏属性'}),h('button',{c:'btn',oclick:function(){answers=[];for(var i=0;i<30;i++)answers.push(-1);cur=0;quiz();}},'开始大调查'),h('div',{c:'note',t:'仅供娱乐'}),h('div',{c:'disclaimer',t:'本测试由AI生成，仅供玩笑，不要当真'})]));
 }
 function quiz(){
-  if(advTimer){clearTimeout(advTimer);advTimer;}
+  if(advTimer){clearTimeout(advTimer);advTimer=0;}
   document.body.style.alignItems='flex-start';
   var app=document.getElementById('app');app.innerHTML='';app.className='page';
   var q=Q[cur],dots=[];
@@ -106,7 +106,7 @@ function quiz(){
   app.appendChild(top);app.appendChild(card);
 }
 function showResult(){
-  if(advTimer){clearTimeout(advTimer);advTimer;}
+  if(advTimer){clearTimeout(advTimer);advTimer=0;}
   document.body.style.alignItems='center';
   var a=0;for(var i=0;i<answers.length;i++){if(answers[i]===0)a++;}
   var pct=Math.round(a/30*100),r=result(pct);
